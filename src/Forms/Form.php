@@ -7,6 +7,8 @@ use Iterator;
 class Form extends Attributes implements Iterator {
 
 	protected $index = 0;
+	
+	protected $attributes = array('accept-charset' => 'utf-8');
 
 	protected $elements;
 

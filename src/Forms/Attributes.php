@@ -30,7 +30,7 @@ abstract class Attributes {
 	}
 
 	public function setAttributes(array $attributes) {
-		$this->attributes = array_merge($attributes, $this->attributes);
+		$this->attributes = array_merge($this->attributes, $attributes);
 	}
 
 	public function setAttribute($key, $value) {

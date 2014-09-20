@@ -16,6 +16,16 @@ class Form extends Attributes implements Iterator {
 		$this->setAttributes($attributes);
 	}
 
+	public function setValues(array $input) {
+		foreach($this->elements as $element) {
+			$name = $element->getName();
+
+			if(isset($input[$name])) {
+				$element->setValue($input[$name]);
+			}
+		}
+	}
+
 	protected function findElement($name) {
 		foreach($this->elements as $index => $element) {
 			if($element->getName() == $name) {

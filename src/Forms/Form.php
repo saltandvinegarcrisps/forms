@@ -35,7 +35,7 @@ class Form extends Attributes implements Iterator {
 	}
 
 	public function addElement(Element $element) {
-		$this->elements[] = $element;
+		$this->elements[$element->getName()] = $element;
 	}
 
 	public function removeElement($name) {

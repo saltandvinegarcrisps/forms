@@ -2,52 +2,54 @@
 
 namespace Forms;
 
-use Iterator;
+use Iterator, Countable;
 
-class Form extends Attributes implements Iterator {
+class Form extends Attributes implements Iterator, Countable {
 
 	protected $index = 0;
-	
-	protected $attributes = array('accept-charset' => 'utf-8');
 
-	protected $elements;
+	protected $keys = [];
 
-	public function __construct(array $attributes = array()) {
+	protected $elements = [];
+
+	protected $attributes = ['accept-charset' => 'utf-8'];
+
+	public function __construct(array $attributes = []) {
 		$this->setAttributes($attributes);
 	}
 
-	public function setValues(array $input) {
+	public function setValues(array $values) {
 		foreach($this->elements as $element) {
 			$name = $element->getName();
 
-			if(isset($input[$name])) {
-				$element->setValue($input[$name]);
+			if(isset($values[$name])) {
+				$element->setValue($values[$name]);
 			}
 		}
 	}
 
-	protected function findElement($name) {
-		foreach($this->elements as $index => $element) {
-			if($element->getName() == $name) {
-				return array($element, $index);
-			}
-		}
+	public function withValues(array $values) {
+		$this->setValues($values);
+
+		return $this;
 	}
 
 	public function addElement(Element $element) {
 		$this->elements[$element->getName()] = $element;
+		$this->keys[] = $element->getName();
 	}
 
 	public function removeElement($name) {
-		list($element, $index) = $this->findElement($name);
-
-		unset($this->elements[$index]);
+		unset($this->elements[$name]);
+		unset($this->keys[array_search($name, $this->keys)]);
 	}
 
 	public function getElement($name) {
-		list($element, $index) = $this->findElement($name);
+		if(false === array_key_exists($name, $this->elements)) {
+			throw new \InvalidArgumentException(sprintf('Form element not found: %s', $name));
+		}
 
-		return $element;
+		return $this->elements[$name];
 	}
 
 	public function getElements(array $names) {
@@ -61,15 +63,26 @@ class Form extends Attributes implements Iterator {
 	}
 
 	public function setElements(array $elements) {
-		$this->elements = array();
+		$this->elements = [];
 
 		foreach($elements as $element) {
 			$this->addElement($element);
 		}
 	}
 
+	public function withElements(array $elements) {
+		foreach($elements as $element) {
+			$this->addElement($element);
+		}
+
+		return $this;
+	}
+
 	public function current() {
-		return $this->elements[$this->index];
+		$names = array_keys($this->elements);
+		$name = $names[$this->index];
+
+		return $this->elements[$name];
 	}
 
 	public function key() {
@@ -85,11 +98,22 @@ class Form extends Attributes implements Iterator {
 	}
 
 	public function valid() {
-		return isset($this->elements[$this->index]);
+		$names = array_keys($this->elements);
+		$name = $names[$this->index];
+
+		return isset($this->elements[$name]);
 	}
 
-	public function open() {
-		return sprintf('<form %s>', $this->getAttributesAsString());
+	public function count() {
+		return count($this->elements);
+	}
+
+	public function open(array $extra = []) {
+		return sprintf('<form %s>', $this->withAttributes($extra)->getAttributesAsString());
+	}
+
+	public function withFiles() {
+		return $this->withAttribute('enctype', 'multipart/form-data');
 	}
 
 	public function close() {

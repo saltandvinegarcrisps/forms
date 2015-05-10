@@ -44,6 +44,12 @@ abstract class Element extends Attributes {
 		$this->label = $value;
 	}
 
+	public function withLabel($value) {
+		$this->setLabel($value);
+
+		return $this;
+	}
+
 	public function hasLabel() {
 		return null !== $this->label;
 	}
@@ -60,12 +66,24 @@ abstract class Element extends Attributes {
 		$this->setAttribute('name', $value);
 	}
 
+	public function withName($value) {
+		$this->setName($value);
+
+		return $this;
+	}
+
 	public function getValue() {
 		return $this->getAttribute('value');
 	}
 
 	public function setValue($value) {
 		$this->setAttribute('value', $value);
+	}
+
+	public function withValue($value) {
+		$this->setValue($value);
+
+		return $this;
 	}
 
 	abstract public function getHtml();

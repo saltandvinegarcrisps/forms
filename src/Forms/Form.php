@@ -79,10 +79,9 @@ class Form extends Attributes implements Iterator, Countable {
 	}
 
 	public function current() {
-		$names = array_keys($this->elements);
-		$name = $names[$this->index];
+		$key = $this->keys[$this->index];
 
-		return $this->elements[$name];
+		return $this->elements[$key];
 	}
 
 	public function key() {
@@ -98,10 +97,7 @@ class Form extends Attributes implements Iterator, Countable {
 	}
 
 	public function valid() {
-		$names = array_keys($this->elements);
-		$name = $names[$this->index];
-
-		return isset($this->elements[$name]);
+		return isset($this->keys[$this->index]);
 	}
 
 	public function count() {

@@ -2,7 +2,7 @@
 	"name": "rwarasaurus/forms",
 	"description": "Form builder",
 	"license": "GPL-3.0",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"type": "library",
 	"authors": [
 		{
@@ -13,10 +13,13 @@
 		}
 	],
 	"require": {
-		"php": ">=5.4"
+		"php": ">=5.5"
 	},
 	"require-dev": {
 		"phpspec/phpspec": "2.2.*@dev"
+	},
+	"config": {
+		"bin-dir": "bin"
 	},
 	"autoload": {
 		"psr-4": {

@@ -2,16 +2,8 @@
 
 namespace Forms\Elements;
 
-use Forms\Element;
-
-class File extends Element {
-
-	protected $format = '<input %s>';
+class File extends Input {
 
 	protected $type = 'file';
-
-	public function getHtml() {
-		return sprintf($this->format, $this->getAttributesAsString());
-	}
 
 }

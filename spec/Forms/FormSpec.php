@@ -4,7 +4,7 @@ namespace spec\Forms;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Forms\Element;
+use Forms\Elements\Element;
 
 class FormSpec extends ObjectBehavior {
 

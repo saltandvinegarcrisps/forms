@@ -1,8 +1,8 @@
 <?php
 
-namespace Forms;
+namespace Forms\Traits;
 
-abstract class Attributes {
+trait Attributes {
 
 	protected $attributes = [];
 
@@ -26,7 +26,7 @@ abstract class Attributes {
 	}
 
 	public function getAttribute($key) {
-		return isset($this->attributes[$key]) ? $this->attributes[$key] : null;
+		return array_key_exists($key, $this->attributes) ? $this->attributes[$key] : null;
 	}
 
 	public function setAttributes(array $attributes) {

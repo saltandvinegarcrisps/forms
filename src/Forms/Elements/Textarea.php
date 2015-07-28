@@ -2,21 +2,13 @@
 
 namespace Forms\Elements;
 
-use Forms\Element;
+use Forms\Traits\Value;
 
 class Textarea extends Element {
 
+	use Value;
+
 	protected $format = '<textarea %s>%s</textarea>';
-
-	protected $content;
-
-	public function getValue() {
-		return $this->content;
-	}
-
-	public function setValue($value) {
-		$this->content = $value;
-	}
 
 	public function getHtml() {
 		return sprintf($this->format, $this->getAttributesAsString(), $this->getValue());

@@ -2,9 +2,9 @@
 
 namespace Forms;
 
-use Iterator, Countable;
+class Form implements \Iterator, \Countable {
 
-class Form extends Attributes implements Iterator, Countable {
+	use Traits\Attributes;
 
 	protected $index = 0;
 
@@ -12,10 +12,8 @@ class Form extends Attributes implements Iterator, Countable {
 
 	protected $elements = [];
 
-	protected $attributes = ['accept-charset' => 'utf-8'];
-
 	public function __construct(array $attributes = []) {
-		$this->setAttributes($attributes);
+		$this->setAttributes(array_merge(['accept-charset' => 'utf-8'], $attributes));
 	}
 
 	public function setValues(array $values) {
@@ -34,7 +32,7 @@ class Form extends Attributes implements Iterator, Countable {
 		return $this;
 	}
 
-	public function addElement(Element $element) {
+	public function addElement(Elements\Element $element) {
 		$this->elements[$element->getName()] = $element;
 		$this->keys[] = $element->getName();
 	}

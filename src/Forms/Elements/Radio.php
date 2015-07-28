@@ -2,16 +2,8 @@
 
 namespace Forms\Elements;
 
-use Forms\Element;
-
-class Radio extends Element {
-
-	protected $format = '<input %s>';
+class Radio extends Checkbox {
 
 	protected $type = 'radio';
-
-	public function getHtml() {
-		return sprintf($this->format, $this->getAttributesAsString());
-	}
 
 }

@@ -2,39 +2,20 @@
 
 namespace Forms\Elements;
 
-use Forms\Element;
+use Forms\Traits\Options;
+use Forms\Traits\Value;
 
 class Select extends Element {
 
+	use Options, Value;
+
 	protected $format = '<select %s>%s</select>';
 
-	protected $options = array();
-
-	protected $selected;
-
-	public function __construct($name, array $options = array()) {
-		parent::__construct($name, $options);
-
-		if(isset($options['options'])) {
-			$this->setOptions($options['options']);
-		}
-	}
-
-	public function getValue() {
-		return $this->selected;
-	}
-
-	public function setValue($value) {
-		$this->selected = $value;
-	}
-
 	protected function getHtmlOption($key, $value, $selected = false) {
-		$attr = array('value' => $key);
-		$pairs = array();
+		$attr = ['value' => $key];
+		$pairs = [];
 
-		if($selected) {
-			$attr['selected'] = null;
-		}
+		if($selected) $attr['selected'] = null;
 
 		foreach($attr as $key => $val) {
 			if(null === $val) {
@@ -56,14 +37,6 @@ class Select extends Element {
 		}
 
 		return $html;
-	}
-
-	public function getOptions() {
-		return $this->options;
-	}
-
-	public function setOptions(array $options) {
-		$this->options = $options;
 	}
 
 	public function getHtml() {

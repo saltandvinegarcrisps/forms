@@ -2,8 +2,6 @@
 
 namespace Forms\Elements;
 
-use Forms\Element;
-
 class Input extends Element {
 
 	protected $format = '<input %s>';

@@ -26,7 +26,11 @@ trait Attributes {
 	}
 
 	public function getAttribute($key) {
-		return array_key_exists($key, $this->attributes) ? $this->attributes[$key] : null;
+		return $this->hasAttribute($key) ? $this->attributes[$key] : null;
+	}
+
+	public function hasAttribute($key) {
+		return array_key_exists($key, $this->attributes);
 	}
 
 	public function setAttributes(array $attributes) {

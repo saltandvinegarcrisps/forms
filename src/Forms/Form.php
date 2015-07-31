@@ -20,7 +20,7 @@ class Form implements \Iterator, \Countable {
 		foreach($this->elements as $element) {
 			$name = $element->getName();
 
-			if(isset($values[$name])) {
+			if(array_key_exists($name, $values)) {
 				$element->setValue($values[$name]);
 			}
 		}
@@ -95,7 +95,7 @@ class Form implements \Iterator, \Countable {
 	}
 
 	public function valid() {
-		return isset($this->keys[$this->index]);
+		return array_key_exists($this->index, $this->keys);
 	}
 
 	public function count() {

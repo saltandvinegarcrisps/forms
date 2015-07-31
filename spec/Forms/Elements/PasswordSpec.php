@@ -17,4 +17,10 @@ class PasswordSpec extends ObjectBehavior {
 		$this->getType()->shouldBe('password');
 	}
 
+	public function it_should_not_be_pre_populated() {
+		$this->beConstructedWith('foo');
+
+		$this->withValue('bar')->getValue()->shouldBe(null);
+	}
+
 }

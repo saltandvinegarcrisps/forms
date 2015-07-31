@@ -17,4 +17,16 @@ class CheckboxSpec extends ObjectBehavior {
 		$this->getType()->shouldBe('checkbox');
 	}
 
+	public function it_can_be_checked() {
+		$this->beConstructedWith('foo');
+
+		$this->setChecked()->hasAttribute('checked')->shouldBe(true);
+	}
+
+	public function it_can_be_unchecked() {
+		$this->beConstructedWith('foo');
+
+		$this->setUnchecked()->hasAttribute('checked')->shouldBe(false);
+	}
+
 }

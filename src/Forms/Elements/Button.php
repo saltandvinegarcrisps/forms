@@ -4,7 +4,7 @@ namespace Forms\Elements;
 
 use Forms\Traits\Value;
 
-class Button extends Element {
+class Button extends AbstractElement {
 
 	use Value;
 

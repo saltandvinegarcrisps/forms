@@ -8,7 +8,7 @@ use Forms\Traits\AttributeValue;
 use Forms\Traits\Label;
 use Forms\Traits\Name;
 
-abstract class Element {
+abstract class AbstractElement implements ElementInterface {
 
 	use Attributes, Metadata, AttributeValue, Label, Name;
 

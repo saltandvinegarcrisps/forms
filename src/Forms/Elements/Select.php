@@ -5,7 +5,7 @@ namespace Forms\Elements;
 use Forms\Traits\Options;
 use Forms\Traits\Value;
 
-class Select extends Element {
+class Select extends AbstractElement {
 
 	use Options, Value;
 

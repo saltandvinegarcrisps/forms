@@ -2,6 +2,8 @@
 
 namespace Forms;
 
+use Forms\Elements\ElementInterface;
+
 class Form implements \Iterator, \Countable {
 
 	use Traits\Attributes;
@@ -32,7 +34,7 @@ class Form implements \Iterator, \Countable {
 		return $this;
 	}
 
-	public function addElement(Elements\Element $element) {
+	public function addElement(ElementInterface $element) {
 		$this->elements[$element->getName()] = $element;
 		$this->keys[] = $element->getName();
 	}

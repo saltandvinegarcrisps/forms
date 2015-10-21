@@ -2,7 +2,7 @@
 
 namespace Forms\Elements;
 
-class Input extends Element {
+class Input extends AbstractElement {
 
 	protected $format = '<input %s>';
 

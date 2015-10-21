@@ -4,7 +4,7 @@ namespace Forms\Elements;
 
 use Forms\Traits\Value;
 
-class Textarea extends Element {
+class Textarea extends AbstractElement {
 
 	use Value;
 

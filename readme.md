@@ -50,15 +50,11 @@ Example
 
 	<?php foreach($form as $element): ?>
 
-	<?php if($element->hasLabel()): ?>
-	<p><label><?php echo $element->getLabel(); ?>
-	<?php endif; ?>
+		<?php if($element->hasLabel()): ?>
+		<label><?php echo $element->getLabel(); ?></label>
+		<?php endif; ?>
 
-	<?php echo $element->getHtml(); ?>
-
-	<?php if($element->hasLabel()): ?>
-	</label></p>
-	<?php endif; ?>
+		<?php echo $element->getHtml(); ?>
 
 	<?php endforeach; ?>
 

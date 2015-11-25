@@ -4,18 +4,15 @@ namespace Forms;
 
 use Forms\Elements\ElementInterface;
 
-class Form implements \Iterator, \Countable {
+class Form implements \IteratorAggregate {
 
 	use Traits\Attributes;
 
-	protected $index = 0;
-
-	protected $keys = [];
-
-	protected $elements = [];
+	protected $elements;
 
 	public function __construct(array $attributes = []) {
 		$this->setAttributes(array_merge(['accept-charset' => 'utf-8'], $attributes));
+		$this->elements = new \SplObjectStorage;
 	}
 
 	public function setValues(array $values) {
@@ -35,39 +32,57 @@ class Form implements \Iterator, \Countable {
 	}
 
 	public function addElement(ElementInterface $element) {
-		$this->elements[$element->getName()] = $element;
-		$this->keys[] = $element->getName();
+		$this->elements->attach($element);
 	}
 
 	public function removeElement($name) {
-		unset($this->elements[$name]);
-		unset($this->keys[array_search($name, $this->keys)]);
+		$element = $this->getElement($name);
+
+		$this->elements->detach($element);
 	}
 
 	public function getElement($name) {
-		if(false === array_key_exists($name, $this->elements)) {
-			throw new \InvalidArgumentException(sprintf('Form element not found: %s', $name));
+		foreach($this->elements as $element) {
+			if($element->getName() === $name) {
+				return $element;
+			}
 		}
 
-		return $this->elements[$name];
+		throw new \InvalidArgumentException(sprintf('Form element not found "%s"', $name));
 	}
 
 	public function getElements(array $names) {
-		return array_intersect_key($this->elements, array_fill_keys($names, null));
+		$filtered = clone $this->elements;
+
+		foreach($this->elements as $element) {
+			if(false === in_array($element->getName(), $names, true)) {
+				$filtered->detach($element);
+			}
+		}
+
+		return $filtered;
 	}
 
 	public function getElementsExcluding(array $names) {
-		$names = array_diff(array_keys($this->elements), $names);
+		$filtered = clone $this->elements;
 
-		return $this->getElements($names);
+		foreach($this->elements as $element) {
+			if(true === in_array($element->getName(), $names, true)) {
+				$filtered->detach($element);
+			}
+		}
+
+		return $filtered;
 	}
 
 	public function setElements(array $elements) {
-		$this->elements = [];
+		$this->elements = new \SplObjectStorage;
 
 		foreach($elements as $element) {
 			$this->addElement($element);
 		}
+
+		unset($elements);
 	}
 
 	public function withElements(array $elements) {
@@ -75,33 +90,13 @@ class Form implements \Iterator, \Countable {
 			$this->addElement($element);
 		}
 
+		unset($elements);
+
 		return $this;
 	}
 
-	public function current() {
-		$key = $this->keys[$this->index];
-
-		return $this->elements[$key];
-	}
-
-	public function key() {
-		return $this->index;
-	}
-
-	public function next() {
-		$this->index++;
-	}
-
-	public function rewind() {
-		$this->index = 0;
-	}
-
-	public function valid() {
-		return array_key_exists($this->index, $this->keys);
-	}
-
-	public function count() {
-		return count($this->elements);
+	public function getIterator() {
+		return $this->elements;
 	}
 
 	public function open(array $extra = []) {

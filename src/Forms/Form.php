@@ -4,7 +4,7 @@ namespace Forms;
 
 use Forms\Elements\ElementInterface;
 
-class Form implements \IteratorAggregate {
+class Form implements \IteratorAggregate, \Countable {
 
 	use Traits\Attributes;
 
@@ -97,6 +97,10 @@ class Form implements \IteratorAggregate {
 
 	public function getIterator() {
 		return $this->elements;
+	}
+
+	public function count() {
+		return $this->elements->count();
 	}
 
 	public function open(array $extra = []) {

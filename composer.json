@@ -2,21 +2,20 @@
 	"name": "rwarasaurus/forms",
 	"description": "Form builder",
 	"license": "GPL-3.0",
-	"version": "0.0.3",
+	"version": "0.1.0",
 	"type": "library",
 	"authors": [
 		{
 			"name": "Kieron",
-			"email": "hello@madebykieron.co.uk",
 			"homepage": "http://madebykieron.co.uk",
 			"role": "Developer"
 		}
 	],
 	"require": {
-		"php": ">=5.5"
+		"php": ">=5.6"
 	},
 	"require-dev": {
-		"phpspec/phpspec": "2.2.*@dev"
+		"phpspec/phpspec": "~2.4.0-beta"
 	},
 	"config": {
 		"bin-dir": "bin"

@@ -114,5 +114,37 @@ class Form implements \IteratorAggregate, \Countable {
 	public function close() {
 		return '</form>';
 	}
+	
+	public function build() {
+		$html = $this->open() . "\r\n";
+
+		foreach($form as $element) {
+			$html .= "\t";
+			if($element->hasLabel()) {
+				$html .= "<label for='" . $element->getName() . "'>" . $element->getLabel() . "</label>";
+			}
+			$html .= $element->getHtml() . "\r\n";
+		}
+
+		$html .= $form->close() . "\r\n";
+		
+		return $html;
+	}
+	
+	public function buildGrouped() {
+		$html = $this->open() . "\r\n";
+
+		foreach($form as $element) {
+			$html .= "\t<div id='frm_" . $element->getName() . "'>\r\n\t\t";
+			if($element->hasLabel()) {
+				$html .= "<label for='" . $element->getName() . "'>" . $element->getLabel() . "</label>";
+			}
+			$html .= $element->getHtml() . "\r\n\t</div>\r\n";
+		}
+
+		$html .= $form->close() . "\r\n";
+		
+		return $html;
+	}
 
 }

@@ -2,6 +2,8 @@
 
 namespace Forms;
 
+require_once 'autoload.php';
+
 use Forms\Elements\ElementInterface;
 
 class Form implements \IteratorAggregate, \Countable {
@@ -113,6 +115,43 @@ class Form implements \IteratorAggregate, \Countable {
 
 	public function close() {
 		return '</form>';
+	}
+
+	public function build() {
+		$html = $this->open() . "\r\n";
+
+		foreach($this->elements as $element) {
+			$html .= "\t";
+			if($element->hasLabel()) {
+				$html .= "<label for='" . $element->getName() . "'>" . $element->getLabel() . "</label>\r\n\t";
+			}
+			$html .= $element->getHtml() . "\r\n";
+		}
+
+		$html .= $this->close() . "\r\n";
+
+		return $html;
+	}
+
+	public function buildGrouped() {
+		$html = $this->open() . "\r\n";
+
+		foreach($this->elements as $element) {
+		    if( "hidden" != $element->getType() )
+    			$html .= "\t<div class='forms-group forms-" . $element->getName() . "'>\r\n\t\t";
+
+			if($element->hasLabel()) {
+				$html .= "<label for='" . $element->getName() . "'>" . $element->getLabel() . "</label>\r\n\t";
+			}
+			$html .= $element->getHtml();
+
+			if( "hidden" != $element->getType() )
+			    $html .= "\r\n\t</div>\r\n";
+		}
+
+		$html .= $this->close() . "\r\n";
+
+		return $html;
 	}
 
 }

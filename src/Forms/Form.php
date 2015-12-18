@@ -2,6 +2,8 @@
 
 namespace Forms;
 
+require_once 'autoload.php';
+
 use Forms\Elements\ElementInterface;
 
 class Form implements \IteratorAggregate, \Countable {

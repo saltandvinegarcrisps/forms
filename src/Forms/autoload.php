@@ -11,8 +11,10 @@ function loader( $_class ) {
 	
 	if( file_exists( $class ) ) {
 		require_once $class;
-		return;
+		return true;
 	}
+	
+	return false;
 }
 
 spl_autoload_register( 'loader' );

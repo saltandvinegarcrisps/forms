@@ -135,7 +135,7 @@ class Form implements \IteratorAggregate, \Countable {
 		$html = $this->open() . "\r\n";
 
 		foreach($form as $element) {
-			$html .= "\t<div id='frm_" . $element->getName() . "'>\r\n\t\t";
+			$html .= "\t<div class='forms-group forms-" . $element->getName() . "'>\r\n\t\t";
 			if($element->hasLabel()) {
 				$html .= "<label for='" . $element->getName() . "'>" . $element->getLabel() . "</label>";
 			}

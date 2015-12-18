@@ -26,7 +26,7 @@ class Select extends AbstractElement {
 			}
 		}
 
-		return sprintf('<option %s>%s</option>', implode(' ', $pairs), $value).PHP_EOL;
+		return "\r\n\t" . sprintf('<option %s>%s</option>', implode(' ', $pairs), $value);
 	}
 
 	protected function getHtmlOptions() {

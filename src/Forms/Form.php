@@ -41,6 +41,16 @@ class Form implements \IteratorAggregate, \Countable {
 		$this->elements->detach($element);
 	}
 
+	public function hasElement($name) {
+		foreach($this->elements as $element) {
+			if($element->getName() === $name) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	public function getElement($name) {
 		foreach($this->elements as $element) {
 			if($element->getName() === $name) {

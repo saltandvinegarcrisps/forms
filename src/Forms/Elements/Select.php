@@ -29,11 +29,24 @@ class Select extends AbstractElement {
 		return sprintf('<option %s>%s</option>', implode(' ', $pairs), $value).PHP_EOL;
 	}
 
+	protected function getHtmlOptionGroup($key, $list)
+    {
+        $html = '';
+
+        foreach ($list as $label => $value) {
+            $html .= $this->getHtmlOption($label, $value, ($this->getValue() == $label));
+        }
+
+        return sprintf('<optgroup label="%s">%s</optgroup>', $key, $html).PHP_EOL;
+    }
+
 	protected function getHtmlOptions() {
 		$html = '';
 
 		foreach($this->options as $key => $value) {
-			$html .= $this->getHtmlOption($key, $value, ($this->getValue() == $key));
+			$html .= is_array($value) ?
+				$this->getHtmlOptionGroup($key, $value) :
+				$this->getHtmlOption($key, $value, ($this->getValue() == $key));
 		}
 
 		return $html;

@@ -14,7 +14,7 @@ trait Attributes {
 				$attrs[] = $key;
 			}
 			else {
-				$attrs[] = $key . '="' . htmlentities($value, ENT_COMPAT | ENT_HTML5, 'UTF-8', false) . '"';
+				$attrs[] = $key . '="' . htmlentities($value, ENT_COMPAT, 'UTF-8', false) . '"';
 			}
 		}
 

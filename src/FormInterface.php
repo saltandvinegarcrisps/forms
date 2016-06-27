@@ -6,9 +6,9 @@ use Forms\Elements\ElementInterface;
 
 interface FormInterface
 {
-	public function setValues(array $values);
+    public function setValues(array $values);
 
-	public function withValues(array $values): FormInterface;
+    public function withValues(array $values): FormInterface;
 
     public function open(array $attributes = []): string;
 

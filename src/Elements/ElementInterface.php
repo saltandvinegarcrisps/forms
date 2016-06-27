@@ -2,4 +2,6 @@
 
 namespace Forms\Elements;
 
-interface ElementInterface {}
+interface ElementInterface
+{
+}

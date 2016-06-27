@@ -20,7 +20,7 @@ class ButtonSpec extends ObjectBehavior {
 	public function it_should_return_the_value() {
 		$this->beConstructedWith('foo');
 
-		$this->getValue()->shouldBe(null);
+		$this->getValue()->shouldBe('');
 	}
 
 	public function it_should_set_the_value() {

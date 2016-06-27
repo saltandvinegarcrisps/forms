@@ -33,4 +33,32 @@ class ButtonSpec extends ObjectBehavior
 
         $this->withValue('bar')->getValue()->shouldBe('bar');
     }
+
+    public function it_should_return_the_name()
+    {
+        $this->beConstructedWith('foo');
+
+        $this->getName()->shouldBe('foo');
+    }
+
+    public function it_should_set_the_name()
+    {
+        $this->beConstructedWith('foo');
+
+        $this->withName('bar')->getName()->shouldBe('bar');
+    }
+
+    public function it_should_return_the_label()
+    {
+        $this->beConstructedWith('foo');
+
+        $this->getLabel()->shouldBe('');
+    }
+
+    public function it_should_set_the_label()
+    {
+        $this->beConstructedWith('foo');
+
+        $this->withLabel('bar')->getLabel()->shouldBe('bar');
+    }
 }

@@ -4,7 +4,7 @@ namespace Forms\Traits;
 
 trait Label
 {
-    protected $label;
+    protected $label = '';
 
     public function getLabel(): string
     {
@@ -25,6 +25,6 @@ trait Label
 
     public function hasLabel(): bool
     {
-        return null !== $this->label;
+        return $this->label !== '';
     }
 }

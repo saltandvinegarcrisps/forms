@@ -10,7 +10,7 @@ trait Elements
     public function get(string $name): ElementInterface
     {
         foreach ($this->elements as $element) {
-            if ($element->getName() === $name) {
+            if ($element->getName() == $name) {
                 return $element;
             }
         }
@@ -26,7 +26,7 @@ trait Elements
     public function has(string $name): bool
     {
         foreach ($this->elements as $element) {
-            if ($element->getName() === $name) {
+            if ($element->getName() == $name) {
                 return true;
             }
         }

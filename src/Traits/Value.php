@@ -4,7 +4,7 @@ namespace Forms\Traits;
 
 trait Value
 {
-    protected $value;
+    protected $value = '';
 
     public function getValue(): string
     {

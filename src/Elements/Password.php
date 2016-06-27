@@ -8,7 +8,7 @@ class Password extends Input
     protected $type = 'password';
 
     // password can not be pre-populated
-    public function setValue($value)
+    public function setValue(string $value)
     {
     }
 }

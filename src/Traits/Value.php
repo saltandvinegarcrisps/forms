@@ -4,20 +4,19 @@ namespace Forms\Traits;
 
 trait Value
 {
+    protected $value;
 
-    protected $value = '';
-
-    public function getValue(): string
+    public function getValue()
     {
         return $this->value;
     }
 
-    public function setValue(string $value)
+    public function setValue($value)
     {
         $this->value = $value;
     }
 
-    public function withValue(string $value)
+    public function withValue($value)
     {
         $this->setValue($value);
 

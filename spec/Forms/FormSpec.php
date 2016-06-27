@@ -28,4 +28,21 @@ class FormSpec extends ObjectBehavior {
 		$this->shouldThrow(new \Forms\Exceptions\FormElementNotFound('form element not found test'))->during('getElement', ['test']);
 	}
 
+	public function it_should_return_empty_for_missing_attributes() {
+		$this->getAttribute('foo')->shouldBe('');
+	}
+
+	public function it_should_return_attribute_when_set_by_key_value() {
+		$this->withAttribute('foo', 'bar')->getAttribute('foo')->shouldBe('bar');
+	}
+
+	public function it_should_return_attribute_when_set_with_array_of_attributes() {
+		$this->withAttributes(['baz' => 'qux'])->getAttribute('baz')->shouldBe('qux');
+	}
+
+	public function it_should_return_attributes_as_a_string() {
+		$this->setAttributes(['foo' => 'bar']);
+		$this->getAttributesAsString()->shouldBe('foo="bar"');
+	}
+
 }

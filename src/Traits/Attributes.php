@@ -38,12 +38,12 @@ trait Attributes
 
     public function setAttributes(array $attributes)
     {
-        $this->attributes = array_merge($this->attributes, $attributes);
+        $this->attributes = $attributes;
     }
 
     public function withAttributes(array $attributes)
     {
-        $this->setAttributes($attributes);
+        $this->attributes = array_merge($this->attributes, $attributes);
 
         return $this;
     }

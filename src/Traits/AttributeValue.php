@@ -4,17 +4,17 @@ namespace Forms\Traits;
 
 trait AttributeValue
 {
-    public function getValue(): string
+    public function getValue()
     {
         return $this->getAttribute('value');
     }
 
-    public function setValue(string $value)
+    public function setValue($value)
     {
         $this->setAttribute('value', $value);
     }
 
-    public function withValue(string $value)
+    public function withValue($value)
     {
         $this->setValue($value);
 

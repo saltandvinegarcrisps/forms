@@ -2,7 +2,6 @@
 	"name": "rwarasaurus/forms",
 	"description": "Form builder",
 	"license": "GPL-3.0",
-	"version": "0.1.0",
 	"type": "library",
 	"authors": [
 		{

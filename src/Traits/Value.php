@@ -6,17 +6,17 @@ trait Value
 {
     protected $value;
 
-    public function getValue()
+    public function getValue(): string
     {
         return $this->value;
     }
 
-    public function setValue($value)
+    public function setValue(string $value)
     {
         $this->value = $value;
     }
 
-    public function withValue($value)
+    public function withValue(string $value)
     {
         $this->setValue($value);
 

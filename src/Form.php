@@ -37,7 +37,7 @@ class Form implements \IteratorAggregate, \Countable
         return $this;
     }
 
-    public function getElements(array $names)
+    public function getElements(array $names): SplObjectStorage
     {
         $filtered = clone $this->elements;
 
@@ -50,7 +50,7 @@ class Form implements \IteratorAggregate, \Countable
         return $filtered;
     }
 
-    public function getElementsExcluding(array $names)
+    public function getElementsExcluding(array $names): SplObjectStorage
     {
         $filtered = clone $this->elements;
 
@@ -96,7 +96,7 @@ class Form implements \IteratorAggregate, \Countable
         return sprintf('<form %s>', $this->withAttributes($attributes)->getAttributesAsString());
     }
 
-    public function withFiles()
+    public function withFiles(): FormInterface
     {
         return $this->withAttribute('enctype', 'multipart/form-data');
     }

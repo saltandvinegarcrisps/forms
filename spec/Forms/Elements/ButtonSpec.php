@@ -61,4 +61,17 @@ class ButtonSpec extends ObjectBehavior
 
         $this->withLabel('bar')->getLabel()->shouldBe('bar');
     }
+
+    public function it_should_be_constructed_with_attributes()
+    {
+        $this->beConstructedWith('foo', [
+            'label' => 'Foo',
+            'attributes' => [
+                'class' => 'title',
+            ],
+        ]);
+
+        $this->getLabel()->shouldBe('Foo');
+        $this->getName()->shouldBe('foo');
+    }
 }

@@ -20,8 +20,6 @@ abstract class AbstractElement implements ElementInterface
 
     public function __construct($name, array $options = [])
     {
-        $this->setName($name);
-
         $this->setParseOption('attributes', [$this, 'setAttributes']);
 
         $this->setParseOption('label', [$this, 'setLabel']);
@@ -32,17 +30,19 @@ abstract class AbstractElement implements ElementInterface
 
         $this->parseOptions($options);
 
+        $this->setName($name);
+
         if ($this->type) {
             $this->setAttribute('type', $this->type);
         }
     }
 
-    public function setParseOption($key, $callback)
+    protected function setParseOption($key, $callback)
     {
         $this->parser[$key] = $callback;
     }
 
-    public function parseOptions(array $options)
+    protected function parseOptions(array $options)
     {
         foreach ($this->parser as $key => $callback) {
             if (false === array_key_exists($key, $options)) {

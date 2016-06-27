@@ -28,7 +28,7 @@ trait Attributes
 
     public function getAttribute(string $key): string
     {
-        return $this->hasAttribute($key) ? $this->attributes[$key] : null;
+        return $this->hasAttribute($key) ? $this->attributes[$key] : '';
     }
 
     public function hasAttribute(string $key): bool

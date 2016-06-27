@@ -30,7 +30,7 @@ class FormSpec extends ObjectBehavior
 
     public function it_should_throw_exception_for_missing_elements()
     {
-        $this->shouldThrow(new \Forms\Exceptions\FormElementNotFound('form element not found test'))->during('getElement', ['test']);
+        $this->shouldThrow(new \Forms\Exceptions\FormElementNotFound('form element not found test'))->during('get', ['test']);
     }
 
     public function it_should_return_a_empty_string_for_missing_attributes()

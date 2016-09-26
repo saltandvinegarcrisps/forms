@@ -7,7 +7,7 @@ use Forms\Elements\ElementInterface;
 use Forms\Traits\Attributes;
 use Forms\Traits\Elements;
 
-class Form implements \IteratorAggregate, \Countable
+class Form implements FormInterface
 {
     use Attributes, Elements;
 
@@ -91,7 +91,7 @@ class Form implements \IteratorAggregate, \Countable
         return $this->elements->count();
     }
 
-    public function open(array $attributes = [])
+    public function open(array $attributes = []): string
     {
         return sprintf('<form %s>', $this->withAttributes($attributes)->getAttributesAsString());
     }
@@ -101,7 +101,7 @@ class Form implements \IteratorAggregate, \Countable
         return $this->withAttribute('enctype', 'multipart/form-data');
     }
 
-    public function close()
+    public function close(): string
     {
         return '</form>';
     }

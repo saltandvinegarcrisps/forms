@@ -57,4 +57,9 @@ abstract class AbstractElement implements ElementInterface
     {
         return $this->type;
     }
+
+    public function isHidden(): bool
+    {
+        return $this->getType() == 'hidden';
+    }
 }

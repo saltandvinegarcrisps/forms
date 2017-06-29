@@ -26,6 +26,8 @@ abstract class AbstractElement implements ElementInterface
 
         $this->setParseOption('value', [$this, 'setValue']);
 
+        $this->setParseOption('contents', [$this, 'setContents']);
+
         $this->setParseOption('options', [$this, 'setOptions']);
 
         $this->parseOptions($options);
